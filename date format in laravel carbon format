@@ -1,0 +1,5 @@
+laravel date function using carbon 
+
+<?php echo  Carbon\Carbon::parse($item->created_at)->diffForHumans(); ?>
+
+result   3 days ago
