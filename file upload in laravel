@@ -1,0 +1,10 @@
+if($req->hasFile('profile_pic_new')) {
+                    $file = $req->file('profile_pic_new');
+                    $filename = 'profile_pic'.time().'.'.$req->profile_pic_new->extension();
+                    $destinationPath = public_path('/images/profile');
+                    $file->move($destinationPath, $filename);
+    
+                    UserDetails::where('user_id',$req->user_id)->update([
+                        'profile_photo' => 'images/profile/'.$filename,
+                    ]);
+                 }
