@@ -1,0 +1,12 @@
+                $data = new Post_likes();
+                $data->user_id = $req->user_id; 
+                $data->user_ip_address=$req->ip();
+                $data->post_id = $req->post_id;
+                $data->rating_action = 1;  
+                $data->save();
+                
+                get last id -------
+                
+                $data->id;
+                
+                
