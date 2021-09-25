@@ -1,0 +1,7 @@
+                    Banner::where('id',$req->banner_id)->update([
+                    'banner_name' => $req->banner_name,  
+                    'banner_image' => $image,
+                    'banner_title' => $req->banner_title,
+                    'description' => $req->description,
+                    'status' => $req->status,
+                ]);
