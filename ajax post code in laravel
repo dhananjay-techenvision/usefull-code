@@ -1,0 +1,38 @@
+<script>
+  $(document).ready(function(){   
+     $('.likepost').click(function(){
+      let user_id = $('#logged_user').val();
+      let post_id = $(this).val();
+      let btn_id = $(this).attr('id');
+      // alert(btn_id);       
+                     $.ajax({
+                         url: "{{url('user-like-post')}}",
+                         method: 'post',
+                         data:{
+                            "_token": "{{ csrf_token() }}",
+                            'post_id': post_id,
+                            "user_id" : user_id
+                        },
+                         success: function(response)
+                         { 
+                           console.log(response['result']);
+                           $('.likes_count_' + post_id).html(response['result']);
+                         }
+                     });
+     });
+  });
+</script>
+
+
+controller code start     --------
+
+
+ $post_like = DB::table('rating_info')                                       
+                            ->where('post_id', $req->post_id)
+                            ->where('rating_action' , 1)
+                            ->count();
+                return response()->json($data = [
+                    'status' => 200,
+                    'msg' => 'success',
+                    'result' => $post_like,            
+                ]);
